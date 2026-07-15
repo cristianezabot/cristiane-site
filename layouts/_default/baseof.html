@@ -4,8 +4,20 @@
   <meta charset="UTF-8">
   <title>{{ .Title }} | {{ .Site.Title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Psicoterapia para mulheres — cuidado, escuta e transformação.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Pinyon+Script&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+
   {{ block "main" . }}{{ end }}
+
+  <footer class="signature">
+    <div class="nome">Cristiane Zabot</div>
+    <div class="titulo">Psicoterapeuta</div>
+  </footer>
+
 </body>
 </html>

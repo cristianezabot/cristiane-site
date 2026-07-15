@@ -1,0 +1,102 @@
+:root {
+  --cream: #F4F1EA;
+  --sage: #7A8C6A;
+  --sage-dark: #556052;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--cream);
+  color: var(--sage-dark);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+main {
+  flex: 1;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 8rem 2rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 2.75rem;
+  color: var(--sage-dark);
+  margin-bottom: 2rem;
+  letter-spacing: 0.02em;
+}
+
+main p {
+  font-size: 1.15rem;
+  font-weight: 300;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* Assinatura fixa */
+footer.signature {
+  text-align: center;
+  padding: 2.5rem 2rem 3rem;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+footer.signature .nome {
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+
+footer.signature .titulo {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-top: 0.4rem;
+}
+
+/* Motivo botânico decorativo */
+.botanico {
+  position: fixed;
+  width: 220px;
+  height: auto;
+  opacity: 0.25;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.botanico.canto-superior-direito {
+  top: 0;
+  right: 0;
+}
+
+.botanico.canto-inferior-esquerdo {
+  bottom: 0;
+  left: 0;
+}
+
+@media (max-width: 600px) {
+  main {
+    padding: 5rem 1.5rem;
+  }
+  h1 {
+    font-size: 2.1rem;
+  }
+  .botanico {
+    width: 140px;
+  }
+}
