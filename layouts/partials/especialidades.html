@@ -3,10 +3,11 @@
   <h2>Como Posso Te Ajudar</h2>
   <p class="secao-intro">Cada mulher chega a mim em um momento diferente da sua história. Nem toda dor tem nome antes de ser dita em voz alta. Estes são alguns dos temas que costumo acompanhar, e que talvez ressoem com o que você está vivendo agora.</p>
   <div class="grid-especialidades">
-    {{ range .Site.Data.especialidades }}
+    {{ range (where .Site.RegularPages "Section" "especialidades").ByWeight }}
     <div class="card-especialidade">
-      <h3>{{ .titulo }}</h3>
-      <p>{{ .descricao }}</p>
+      <h3>{{ .Title }}</h3>
+      <p>{{ .Params.descricao }}</p>
+      <a class="leia-mais" href="{{ .RelPermalink }}">LEIA MAIS</a>
     </div>
     {{ end }}
   </div>
