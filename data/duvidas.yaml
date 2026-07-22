@@ -9,4 +9,4 @@
 - pergunta: "Qual a forma de pagamento?"
   resposta: "PIX e Cartão de Crédito (com possibilidade de parcelamento)."
 - pergunta: "Como agendar uma sessão?"
-  resposta: "O agendamento é feito de forma simples pelo Whatsapp. Clique no botão “Agendar Consulta” ou [aqui](https://api.whatsapp.com/send?phone=5547996065858&text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20agendar%20uma%20consulta.) para iniciar a conversa diretamente comigo.
+  resposta: "O agendamento é feito de forma simples pelo Whatsapp. Clique no botão “Agendar Consulta” ou [aqui](https://api.whatsapp.com/send?phone=5547996065858&text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20agendar%20uma%20consulta.) para iniciar a conversa diretamente comigo."
