@@ -1,6 +1,6 @@
 ---
 title: "Ansiedade"
-descricao: "[placeholder — breve descrição]"
+descricao: "Estado de alerta constante que antecipa problemas e consome a energia mental do dia a dia."
 modalidade: "ONLINE E PRESENCIAL"
 weight: 1
 ---

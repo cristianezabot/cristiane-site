@@ -1,6 +1,6 @@
 ---
 title: "Perda Gestacional"
-descricao: "[placeholder — breve descrição]"
+descricao: "Luto silenciado pela perda de uma gestação, muitas vezes vivido sem espaço para ser nomeado."
 modalidade: "ONLINE E PRESENCIAL"
 weight: 5
 ---

@@ -1,6 +1,6 @@
 ---
 title: "Luto"
-descricao: "[placeholder — breve descrição]"
+descricao: "Processo emocional diante da perda de alguém importante, que exige tempo e não segue uma ordem previsível."
 modalidade: "ONLINE E PRESENCIAL"
 weight: 6
 ---

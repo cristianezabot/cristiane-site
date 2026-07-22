@@ -1,6 +1,6 @@
 ---
 title: "Crises na Maternidade"
-descricao: "[placeholder — breve descrição]"
+descricao: "Esgotamento emocional que surge quando a entrega materna não encontra espaço para o próprio cansaço."
 modalidade: "ONLINE E PRESENCIAL"
 weight: 2
 ---

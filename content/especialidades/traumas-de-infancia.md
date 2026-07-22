@@ -1,6 +1,6 @@
 ---
 title: "Traumas de Infância"
-descricao: "[placeholder — breve descrição]"
+descricao: "Vivências antigas não resolvidas que ainda influenciam padrões emocionais na vida adulta."
 modalidade: "ONLINE E PRESENCIAL"
 weight: 8
 ---

@@ -1,6 +1,6 @@
 ---
 title: "Relacionamento Conjugal"
-descricao: "[placeholder — breve descrição]"
+descricao: "Distanciamento afetivo entre o casal que se instala aos poucos, mesmo sem conflitos abertos."
 modalidade: "ONLINE E PRESENCIAL"
 weight: 4
 ---

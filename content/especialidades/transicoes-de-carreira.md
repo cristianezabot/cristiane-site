@@ -1,6 +1,6 @@
 ---
 title: "Transições de Carreira"
-descricao: "[placeholder — breve descrição]"
+descricao: "Momento de inquietação profissional em que o caminho atual já não faz mais sentido."
 modalidade: "ONLINE E PRESENCIAL"
 weight: 3
 ---
