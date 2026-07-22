@@ -572,3 +572,13 @@ section > h2::after {
   .pagina-especialidade { grid-template-columns: 1fr; }
   .ficha-especialista { position: static; }
 }
+
+
+@media (max-width: 760px) {
+  .site-header {
+    position: static;
+  }
+  .site-header .btn-cta {
+    display: none;
+  }
+}
