@@ -111,7 +111,9 @@ section > h2::after {
   font-weight: 400;
   color: var(--sage-dark);
   letter-spacing: 0.01em;
+  border-bottom: none;
 }
+.site-header .logo:hover { color: var(--sage-dark); }
 
 .site-header nav {
   display: flex;
