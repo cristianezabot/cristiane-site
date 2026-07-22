@@ -1,0 +1,13 @@
+<div class="secao-full tom-b">
+<section id="depoimentos" class="depoimentos">
+  <h2>Depoimentos</h2>
+  <div class="grid-depoimentos">
+    {{ range .Site.Data.depoimentos }}
+    <div class="card-depoimento">
+      <p>&ldquo;{{ .texto }}&rdquo;</p>
+      <span class="autor">{{ .autor }}</span>
+    </div>
+    {{ end }}
+  </div>
+</section>
+</div>

@@ -1,0 +1,14 @@
+<div class="secao-full tom-a">
+<section id="duvidas" class="duvidas">
+  <h2>Dúvidas</h2>
+  <div class="lista-duvidas">
+    {{ range .Site.Data.duvidas }}
+    <details class="item-duvida">
+      <summary>{{ .pergunta }}</summary>
+      <p>{{ .resposta }}</p>
+    </details>
+    {{ end }}
+  </div>
+  <p class="duvidas-cta">Não achou a resposta que procurava? <a href="https://api.whatsapp.com/send?phone=5547996065858&text=Ol%C3%A1%2C%20gostaria%20de%20tirar%20uma%20d%C3%BAvida." target="_blank" rel="noopener">Entre em contato.</a></p>
+</section>
+</div>

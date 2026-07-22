@@ -1,4 +1,7 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  {{ .Content }}
+  {{ partial "hero.html" . }}
+  {{ partial "quem-sou.html" . }}
+  {{ partial "especialidades.html" . }}
+  {{ partial "depoimentos.html" . }}
+  {{ partial "duvidas.html" . }}
 {{ end }}
