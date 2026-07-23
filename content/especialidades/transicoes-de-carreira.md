@@ -1,5 +1,6 @@
 ---
 title: "Transições de Carreira"
+seotitle: "Terapia para Transição de Carreira Feminina — Online"
 descricao: "Momento de inquietação profissional em que o caminho atual já não faz mais sentido."
 modalidade: "ONLINE E PRESENCIAL"
 weight: 3

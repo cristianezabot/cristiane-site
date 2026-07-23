@@ -1,5 +1,6 @@
 ---
 title: "Climatério e Menopausa"
+seotitle: "Terapia para Climatério e Menopausa — Online"
 descricao: "Transição física e emocional que traz novas perguntas sobre identidade e feminilidade."
 modalidade: "ONLINE E PRESENCIAL"
 weight: 7

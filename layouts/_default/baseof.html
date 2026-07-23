@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="_wQcsnOH_o6Q1x0sfKUqhn_Ty8YgMiThShAYb1Ap8sw" />
 
-  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+  <title>{{ if .Params.seotitle }}{{ .Params.seotitle }}{{ else if .IsHome }}{{ .Site.Params.seotitle | default .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
   <meta name="description" content="{{ with .Params.descricao }}{{ . }}{{ else }}Psicoterapia para mulheres em Joinville e online. Ansiedade, maternidade, luto, transições de carreira e relacionamento conjugal.{{ end }}">
   <link rel="canonical" href="{{ .Permalink }}">
 

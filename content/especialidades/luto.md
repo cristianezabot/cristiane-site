@@ -1,5 +1,6 @@
 ---
 title: "Luto"
+seotitle: "Terapia para Luto em Joinville e Online"
 descricao: "Processo emocional diante da perda de alguém importante, que exige tempo e não segue uma ordem previsível."
 modalidade: "ONLINE E PRESENCIAL"
 weight: 6

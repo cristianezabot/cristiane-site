@@ -1,5 +1,6 @@
 ---
 title: "Perda Gestacional"
+seotitle: "Terapia para Perda Gestacional — Acompanhamento no Luto"
 descricao: "Luto silenciado pela perda de uma gestação, muitas vezes vivido sem espaço para ser nomeado."
 modalidade: "ONLINE E PRESENCIAL"
 weight: 5
