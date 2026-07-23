@@ -582,3 +582,15 @@ section > h2::after {
     display: none;
   }
 }
+
+.pagina-simples {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+.pagina-simples h1 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 400;
+  color: #556052;
+  margin-bottom: 32px;
+}

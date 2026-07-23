@@ -2,13 +2,54 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>{{ .Title }} | {{ .Site.Title }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Psicoterapia para mulheres — cuidado, escuta e transformação.">
+
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ with .Params.descricao }}{{ . }}{{ else }}Psicoterapia para mulheres em Joinville e online. Ansiedade, maternidade, luto, transições de carreira e relacionamento conjugal.{{ end }}">
+  <link rel="canonical" href="{{ .Permalink }}">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="{{ .Site.Title }}">
+  <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
+  <meta property="og:description" content="{{ with .Params.descricao }}{{ . }}{{ else }}Psicoterapia para mulheres em Joinville e online. Ansiedade, maternidade, luto, transições de carreira e relacionamento conjugal.{{ end }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:image" content="{{ .Site.BaseURL }}img/og-cristianezabot.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <meta name="twitter:card" content="summary_large_image">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Pinyon+Script&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
+
+  {{ if .IsHome }}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Cristiane Zabot — Psicoterapeuta de Mulheres",
+    "description": "Psicoterapia para mulheres, online e presencial em Joinville.",
+    "url": "https://cristianezabot.com.br/",
+    "image": "https://cristianezabot.com.br/img/cristianezabot.jpg",
+    "telephone": "+5547996065858",
+    "areaServed": "Brasil",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Joinville",
+      "addressRegion": "SC",
+      "addressCountry": "BR"
+    },
+    "sameAs": ["https://www.instagram.com/cristiane_zabot"]
+  }
+  </script>
+  {{ end }}
 </head>
 <body>
   {{ partial "header.html" . }}

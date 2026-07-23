@@ -1,6 +1,5 @@
-OK: site_info.txt gerado (256 linhas, 8.0K).
-===============
-INFORMAÇÕES DO SITE — 2026-07-22 15:22:14
+============================================================
+INFORMAÇÕES DO SITE — 
 ============================================================
 
 >>> SISTEMA
@@ -19,7 +18,7 @@ origin	git@github-cristiane:cristianezabot/cristiane-site.git (fetch)
 origin	git@github-cristiane:cristianezabot/cristiane-site.git (push)
 
 Último commit:
-89444fa nova
+b91ef11 depoimentos: adiciona 3 primeiros depoimentos de pacientes
 
 Branches:
 * main
@@ -39,11 +38,19 @@ title = 'Cristiane Zabot - Psicoterapeuta'
 ./atualiza
 ./coleta_site.sh
 ./content
+./content/especialidades
+./content/especialidades/ansiedade.md
+./content/especialidades/climaterio-e-menopausa.md
+./content/especialidades/crises-na-maternidade.md
+./content/especialidades/luto.md
+./content/especialidades/perda-gestacional.md
+./content/especialidades/relacionamento-conjugal.md
+./content/especialidades/transicoes-de-carreira.md
+./content/especialidades/traumas-de-infancia.md
 ./content/_index.md
 ./data
 ./data/depoimentos.yaml
 ./data/duvidas.yaml
-./data/especialidades.yaml
 ./.hugo_build.lock
 ./hugo.toml
 ./i18n
@@ -51,6 +58,8 @@ title = 'Cristiane Zabot - Psicoterapeuta'
 ./layouts/_default
 ./layouts/_default/baseof.html
 ./layouts/_default/single.html
+./layouts/especialidades
+./layouts/especialidades/single.html
 ./layouts/index.html
 ./layouts/partials
 ./layouts/partials/depoimentos.html
@@ -65,11 +74,18 @@ title = 'Cristiane Zabot - Psicoterapeuta'
 ./static/CNAME
 ./static/css
 ./static/css/style.css
+./static/css/style_old.css
+./static/img
+./static/img/cristianezabot.jpg
+./static/img/galho.png
 ./themes
 
 >>> STATIC (arquivos)
 static/CNAME
 static/css/style.css
+static/css/style_old.css
+static/img/cristianezabot.jpg
+static/img/galho.png
 
 >>> GITHUB ACTIONS
 >>> CNAME
@@ -112,6 +128,30 @@ DUMP DOS ARQUIVOS
   {{ .Content }}
 {{ end }}
 
+--- layouts/especialidades/single.html ---
+{{ define "main" }}
+<div class="secao-full tom-a">
+<section class="pagina-especialidade">
+
+  <aside class="ficha-especialista">
+    <div class="ficha-foto">
+      <img src="/img/cristianezabot.jpg" alt="Cristiane Zabot">
+    </div>
+    <h2 class="ficha-nome">Cristiane Zabot</h2>
+    <p class="ficha-titulo">Psicoterapeuta de Mulheres</p>
+    <p class="ficha-modalidade">{{ .Params.modalidade | default "ONLINE E PRESENCIAL" }}</p>
+    <a class="btn-cta" href="https://api.whatsapp.com/send?phone=5547996065858&text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener">AGENDAR CONSULTA</a>
+  </aside>
+
+  <article class="conteudo-especialidade">
+    <h1>{{ .Title }}</h1>
+    {{ .Content }}
+  </article>
+
+</section>
+</div>
+{{ end }}
+
 --- layouts/index.html ---
 {{ define "main" }}
   {{ partial "hero.html" . }}
@@ -144,7 +184,7 @@ DUMP DOS ARQUIVOS
     {{ range .Site.Data.duvidas }}
     <details class="item-duvida">
       <summary>{{ .pergunta }}</summary>
-      <p>{{ .resposta }}</p>
+      <p>{{ .resposta | markdownify }}</p>
     </details>
     {{ end }}
   </div>
@@ -156,12 +196,13 @@ DUMP DOS ARQUIVOS
 <div class="secao-full tom-a">
 <section id="como-ajudo" class="especialidades">
   <h2>Como Posso Te Ajudar</h2>
-  <p class="secao-intro">[placeholder — texto introdutório da seção]</p>
+  <p class="secao-intro">Cada mulher chega a mim em um momento diferente da sua história. Nem toda dor tem nome antes de ser dita em voz alta. Estes são alguns dos temas que costumo acompanhar, e que talvez ressoem com o que você está vivendo agora.</p>
   <div class="grid-especialidades">
-    {{ range .Site.Data.especialidades }}
+    {{ range (where .Site.RegularPages "Section" "especialidades").ByWeight }}
     <div class="card-especialidade">
-      <h3>{{ .titulo }}</h3>
-      <p>{{ .descricao }}</p>
+      <h3>{{ .Title }}</h3>
+      <p>{{ .Params.descricao }}</p>
+      <a class="leia-mais" href="{{ .RelPermalink }}">LEIA MAIS</a>
     </div>
     {{ end }}
   </div>
@@ -192,7 +233,7 @@ DUMP DOS ARQUIVOS
 
 --- layouts/partials/header.html ---
 <header class="site-header">
-  <div class="logo">Cristiane Zabot</div>
+  <a class="logo" href="/">Cristiane Zabot</a>
   <nav>
     <a href="#quem-sou">QUEM SOU</a>
     <a href="#como-ajudo">COMO POSSO TE AJUDAR</a>
@@ -205,10 +246,16 @@ DUMP DOS ARQUIVOS
 --- layouts/partials/hero.html ---
 <div class="secao-full tom-a">
 <section class="hero">
-  <p class="kicker">PSICOTERAPIA DE MULHERES</p>
-  <h1>[placeholder — frase de destaque principal]</h1>
-  <p class="hero-sub">[placeholder — subtítulo curto de acolhimento]</p>
-  <a class="btn-cta" href="https://api.whatsapp.com/send?phone=5547996065858&text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener">AGENDAR CONSULTA</a>
+  <img class="galho-decorativo" src="/img/galho.png" alt="" aria-hidden="true">
+  <div class="hero-texto">
+    <p class="kicker">PSICOTERAPIA DE MULHERES</p>
+    <h1>Unidade interior para viver com paz e harmonia</h1>
+    <p class="hero-sub">Presença, escuta e cuidado para cada etapa da sua história</p>
+    <a class="btn-cta" href="https://api.whatsapp.com/send?phone=5547996065858&text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener">AGENDAR CONSULTA</a>
+  </div>
+  <div class="hero-foto">
+    <img src="/img/cristianezabot.jpg" alt="Cristiane Zabot">
+  </div>
 </section>
 </div>
 
@@ -217,14 +264,268 @@ DUMP DOS ARQUIVOS
 <section id="quem-sou" class="quem-sou">
   <h2>Quem Sou</h2>
   <div class="quem-sou-conteudo">
-    <p>[placeholder — parágrafo de apresentação, credenciais e abordagem]</p>
-    <p>[placeholder — segundo parágrafo]</p>
+    <p>Psicoterapeuta de Mulheres, com formação em Psicologia Familiar. Combino Terapia Cognitivo-Comportamental e Logoterapia num processo de escuta para compreender e ajudar mulheres em sua totalidade.</p>
+    <p>Sou casada há 20 anos e mãe de 8 filhos. Antes de chegar à terapia, minha trajetória profissional começou pelo jornalismo. O que me trouxe até aqui foi sempre o mesmo interesse: entender profundamente a história de cada pessoa.</p>
     <p class="assinatura-secao">Cristiane Zabot — Psicoterapeuta de Mulheres</p>
   </div>
 </section>
 </div>
 
 ### CONTEÚDO .md ###
+
+--- content/especialidades/ansiedade.md ---
+---
+title: "Ansiedade"
+descricao: "Estado de alerta constante que antecipa problemas e consome a energia mental do dia a dia."
+modalidade: "ONLINE E PRESENCIAL"
+weight: 1
+---
+
+## Ansiedade: entendendo a raiz de uma preocupação que não passa
+
+A ansiedade costuma aparecer como uma sensação de alerta constante: o corpo tenso, a mente antecipando problemas que ainda nem aconteceram. Em doses pequenas, isso é natural, nos protege, nos prepara. O problema é quando essa preocupação deixa de ser pontual e passa a ocupar o dia inteiro, sem que a pessoa consiga entender bem por quê.
+
+Muitas mulheres chegam até mim exaustas, não de uma tarefa específica, mas de um cansaço mental que parece não ter fim. E, quase sempre, essa ansiedade não é sobre o presente. É sobre padrões que se repetem: uma cobrança antiga, uma insegurança que nunca foi olhada de frente, uma rotina que não deixa espaço para parar e sentir.
+
+### Quando a preocupação vira um padrão
+
+Alguns sinais indicam que a ansiedade já passou de uma reação pontual para um padrão que merece atenção:
+
+- Dificuldade de desligar o pensamento, mesmo em momentos de descanso
+- Cansaço mental que não melhora com uma noite de sono
+- Irritabilidade ou sensação de estar sempre no limite
+- Tensão no corpo sem uma causa física clara
+- Sensação de estar sempre um passo atrás de tudo
+
+Esses sinais, quando se repetem por semanas, costumam indicar que existe algo mais profundo pedindo para ser compreendido, não apenas controlado.
+
+### O que costumo trabalhar em terapia
+
+Meu trabalho não é apagar a ansiedade como quem silencia um alarme. É entender o que ela está sinalizando. Na maioria das vezes, por trás da preocupação constante existe uma história, uma crença sobre si mesma, ou uma forma de viver que já não faz mais sentido, mas que a pessoa carrega por hábito.
+
+Na escuta, buscamos juntas identificar esses padrões e criar novas formas de lidar com eles: menos no automático, mais na consciência. Não é sobre nunca mais sentir ansiedade. É sobre deixar de ser conduzida por ela.
+
+### Se isso soa familiar
+
+Se você se reconhece nessa descrição, o cansaço, a mente que não para, a sensação de estar sempre alerta, talvez seja hora de olhar para isso com mais cuidado, e não sozinha.
+
+--- content/especialidades/climaterio-e-menopausa.md ---
+---
+title: "Climatério e Menopausa"
+descricao: "Transição física e emocional que traz novas perguntas sobre identidade e feminilidade."
+modalidade: "ONLINE E PRESENCIAL"
+weight: 7
+---
+
+## Climatério e Menopausa: uma nova fase que também é identidade
+
+O climatério e a menopausa trazem mudanças físicas visíveis, mas o impacto emocional dessa fase costuma ser menos falado. Para muitas mulheres, esse período vem acompanhado de perguntas sobre identidade, feminilidade e um sentimento de perda de uma versão de si mesma que já não volta.
+
+Esses sentimentos não são exagero nem fragilidade. São parte real de uma transição importante, que merece ser compreendida e não apenas suportada em silêncio.
+
+### Sinais de que essa fase pede atenção
+
+- Oscilações de humor mais intensas do que o habitual
+- Sensação de perda de identidade ou de feminilidade
+- Irritabilidade ou tristeza sem uma causa clara
+- Dificuldade de se reconhecer nas mudanças do próprio corpo
+- Isolamento por vergonha ou desconforto com o tema
+
+### O que costumo trabalhar em terapia
+
+Ajudo a construir um novo entendimento sobre essa fase, que não seja de perda, mas de transformação. Trabalhamos para que essa mulher se reconecte com sua identidade, sem se prender a uma versão anterior de si mesma.
+
+### Se isso soa familiar
+
+Se essa fase da vida tem trazido mais confusão do que clareza, converse comigo. Esse pode ser um momento de reencontro consigo mesma, não apenas de adaptação.
+
+--- content/especialidades/crises-na-maternidade.md ---
+---
+title: "Crises na Maternidade"
+descricao: "Esgotamento emocional que surge quando a entrega materna não encontra espaço para o próprio cansaço."
+modalidade: "ONLINE E PRESENCIAL"
+weight: 2
+---
+
+## Crises na Maternidade: quando o amor não elimina o cansaço
+
+Ser mãe é, ao mesmo tempo, um dos maiores atos de entrega e um dos maiores desafios emocionais que uma mulher pode viver. É comum sentir um amor profundo pelos filhos e, no mesmo dia, uma exaustão que parece contradizer esse amor. Essa contradição não é falha nenhuma. É sinal de que algo na rotina, na cobrança interna ou no apoio recebido precisa de atenção.
+
+Muitas mulheres carregam a ideia de que maternidade exige entrega total, sem espaço para cansaço, dúvida ou frustração. Quando a realidade não cabe nesse ideal, a culpa aparece, e com ela, um esgotamento que vai além do físico.
+
+### Quando o cansaço vira uma crise
+
+Alguns sinais merecem atenção quando se tornam frequentes:
+
+- Sensação constante de estar aquém do que se espera de si mesma
+- Irritabilidade com os filhos seguida de culpa intensa
+- Perda de identidade fora do papel de mãe
+- Dificuldade de pedir ajuda ou dividir tarefas
+- Cansaço que não melhora, mesmo com descanso
+
+Esses sinais indicam que a maternidade, tal como está sendo vivida hoje, pede um novo equilíbrio, não uma entrega ainda maior.
+
+### O que costumo trabalhar em terapia
+
+Na escuta, buscamos compreender de onde vêm as expectativas que essa mulher carrega sobre si mesma, quais são reais e quais foram herdadas, sem que ela tivesse escolhido. A partir daí, é possível construir uma maternidade mais sustentável, com espaço para ser mãe e, ao mesmo tempo, continuar sendo ela mesma.
+
+### Se isso soa familiar
+
+Se você sente que o cansaço da maternidade já ultrapassou o que é razoável, e que a culpa tem falado mais alto que o cuidado consigo, talvez seja hora de conversar sobre isso.
+
+--- content/especialidades/luto.md ---
+---
+title: "Luto"
+descricao: "Processo emocional diante da perda de alguém importante, que exige tempo e não segue uma ordem previsível."
+modalidade: "ONLINE E PRESENCIAL"
+weight: 6
+---
+
+## Luto: quando a dor da perda pede um espaço para ser vivida
+
+O luto é uma experiência universal, mas nunca é igual de uma pessoa para outra. Perder alguém importante muda a forma como enxergamos o mundo, e é natural que esse processo leve tempo, envolva altos e baixos, e não siga uma ordem previsível.
+
+Muitas vezes, a pressão para "seguir em frente" rapidamente impede que o luto seja realmente vivido, empurrando a dor para dentro, onde ela continua presente, mesmo que escondida.
+
+### Sinais de que o luto precisa de mais atenção
+
+- Sensação de que o tempo não está ajudando a aliviar a dor
+- Evitar completamente lembranças ou assuntos ligados à pessoa perdida
+- Culpa relacionada à perda, mesmo sem motivo real
+- Dificuldade de retomar rotinas básicas
+- Sentimento de estar "presa" num momento específico da perda
+
+### O que costumo trabalhar em terapia
+
+Acompanho esse processo respeitando o tempo de cada pessoa, ajudando a encontrar um lugar para essa perda que não seja nem o esquecimento nem a paralisia. O objetivo não é deixar de sentir a falta, mas aprender a seguir vivendo com ela.
+
+### Se isso soa familiar
+
+Se você está enfrentando uma perda e sente que precisa de um espaço para elaborar essa dor com mais cuidado, esse acompanhamento pode te fazer bem.
+
+--- content/especialidades/perda-gestacional.md ---
+---
+title: "Perda Gestacional"
+descricao: "Luto silenciado pela perda de uma gestação, muitas vezes vivido sem espaço para ser nomeado."
+modalidade: "ONLINE E PRESENCIAL"
+weight: 5
+---
+
+## Perda Gestacional: um luto que muitas vezes é vivido em silêncio
+
+A perda de uma gestação é uma das dores mais silenciadas que existem. Socialmente, é pouco falada, pouco reconhecida, e isso faz com que muitas mulheres vivam esse luto sozinhas, sem espaço para nomear o que sentem.
+
+Além da tristeza, é comum surgir culpa, mesmo quando não há nenhuma razão real para isso, e uma sensação de que o próprio corpo falhou. Esses sentimentos merecem ser acolhidos, não silenciados.
+
+### Sinais de que esse luto precisa de acompanhamento
+
+- Culpa persistente, mesmo sabendo racionalmente que não houve falha
+- Evitar falar sobre o assunto por medo de incomodar os outros
+- Dificuldade de lidar com gestações ou bebês ao redor
+- Tristeza que não encontra espaço para ser expressa
+- Sensação de que o próprio processo de luto precisa ser apressado
+
+### O que costumo trabalhar em terapia
+
+Ofereço um espaço para que essa dor seja dita em voz alta, sem pressa e sem julgamento. Cada mulher vive essa perda de um jeito, e não existe um tempo certo para atravessar esse luto. O trabalho terapêutico é sobre acompanhar esse processo, sem forçar uma superação apressada.
+
+### Se isso soa familiar
+
+Se você viveu uma perda gestacional e sente que ainda carrega essa dor sem ter tido espaço para elaborá-la, estou aqui para te acompanhar nesse processo.
+
+--- content/especialidades/relacionamento-conjugal.md ---
+---
+title: "Relacionamento Conjugal"
+descricao: "Distanciamento afetivo entre o casal que se instala aos poucos, mesmo sem conflitos abertos."
+modalidade: "ONLINE E PRESENCIAL"
+weight: 4
+---
+
+## Relacionamento Conjugal: quando o casamento pede um novo olhar
+
+Todo casamento passa por fases de distanciamento. O problema não é a existência delas, mas o que se faz quando percebemos que a conexão de antes já não está mais ali. Muitos casais convivem anos sem conflitos abertos, mas também sem intimidade real, o que é, de outra forma, igualmente doloroso.
+
+As crises conjugais costumam vir acompanhadas de um sentimento de solidão dentro da própria relação, algo difícil de nomear e, por isso, difícil de resolver sozinha.
+
+### Quando o distanciamento vira uma crise
+
+Alguns sinais pedem atenção quando se tornam constantes:
+
+- Diálogos que giram só em torno de tarefas práticas do dia a dia
+- Sensação de solidão mesmo estando junto
+- Discussões repetitivas que nunca chegam a uma resolução real
+- Perda de vontade de compartilhar o que se sente
+- Comparação frequente com o início do relacionamento
+
+### O que costumo trabalhar em terapia
+
+No acompanhamento individual ou em casal, busco ajudar a entender o que mudou, o que ficou represado e o que ainda pode ser reconstruído. A meta não é voltar ao início da relação, mas construir uma nova forma de estar junto, mais consciente e mais verdadeira.
+
+### Se isso soa familiar
+
+Se você sente que seu casamento está funcionando por hábito, mas não por escolha, vale a pena conversar sobre isso antes que o distanciamento se torne definitivo.
+
+--- content/especialidades/transicoes-de-carreira.md ---
+---
+title: "Transições de Carreira"
+descricao: "Momento de inquietação profissional em que o caminho atual já não faz mais sentido."
+modalidade: "ONLINE E PRESENCIAL"
+weight: 3
+---
+
+## Transições de Carreira: quando o caminho profissional pede uma pausa para pensar
+
+Mudanças de carreira raramente acontecem só no papel. Antes de qualquer decisão prática, existe geralmente uma inquietação interna: a sensação de que o trabalho atual já não faz mais sentido, ou o medo de que uma escolha diferente signifique recomeçar do zero.
+
+Para muitas mulheres, essa transição vem acompanhada de perguntas mais profundas sobre identidade: quem sou eu fora dessa função, desse cargo, dessa rotina que conheço tão bem.
+
+### Quando a inquietação vira uma crise
+
+Alguns sinais indicam que essa transição já está pedindo decisão, e não apenas reflexão:
+
+- Sensação de estagnação, mesmo em posições de sucesso aparente
+- Dificuldade de imaginar os próximos anos na mesma direção atual
+- Medo paralisante diante de qualquer mudança
+- Comparação constante com escolhas de outras pessoas
+- Sensação de estar vivendo a vida de acordo com expectativas alheias
+
+### O que costumo trabalhar em terapia
+
+Na escuta, ajudo a separar o que é medo do que é, de fato, um chamado para mudar. Trabalhamos para entender os valores que essa mulher quer que guiem sua próxima fase profissional, para que a decisão venha de dentro, e não apenas da pressão externa ou do cansaço do momento.
+
+### Se isso soa familiar
+
+Se você sente que chegou a um ponto de virada profissional e não sabe bem por onde começar, esse pode ser o momento certo para pensar nisso com calma e acompanhamento.
+
+--- content/especialidades/traumas-de-infancia.md ---
+---
+title: "Traumas de Infância"
+descricao: "Vivências antigas não resolvidas que ainda influenciam padrões emocionais na vida adulta."
+modalidade: "ONLINE E PRESENCIAL"
+weight: 8
+---
+
+## Traumas de Infância: quando o passado ainda influencia o presente
+
+Muitas dificuldades emocionais na vida adulta têm raízes em experiências vividas na infância, mesmo quando a pessoa não faz essa ligação de forma consciente. Padrões de relacionamento, autoestima e reações emocionais intensas costumam ter origem em vivências antigas que nunca foram totalmente compreendidas.
+
+Reconhecer essa ligação não é sobre culpar o passado, mas sobre entender de onde vêm certos padrões, para poder finalmente mudá-los.
+
+### Sinais de que um trauma de infância ainda pede atenção
+
+- Reações emocionais desproporcionais diante de situações específicas
+- Dificuldade de confiar em relacionamentos, mesmo sem motivo aparente
+- Padrões repetitivos de relação que trazem sofrimento
+- Autoestima construída sobre críticas recebidas ainda na infância
+- Sensação de estar sempre reagindo, e nunca escolhendo
+
+### O que costumo trabalhar em terapia
+
+Na escuta, buscamos compreender essas origens com cuidado e sem pressa, permitindo que essa mulher entenda seus próprios padrões e construa novas formas de reagir ao presente, mais livres do peso do passado.
+
+### Se isso soa familiar
+
+Se você percebe que reações antigas ainda guiam suas escolhas hoje, esse pode ser o momento de compreender essas raízes e começar a se libertar delas.
 
 --- content/_index.md ---
 ---
@@ -242,15 +543,15 @@ git push
 
 >>> TESTE DE BUILD
 -------------------+-----
-  Pages            |  5  
+  Pages            | 14  
   Paginator pages  |  0  
   Non-page files   |  0  
-  Static files     |  2  
+  Static files     |  5  
   Processed images |  0  
   Aliases          |  0  
   Cleaned          |  0  
 
-Total in 8 ms
+Total in 11 ms
 
 ============================================================
 Arquivo gerado em: /home/zabot/cristiane/site/site_info.txt
