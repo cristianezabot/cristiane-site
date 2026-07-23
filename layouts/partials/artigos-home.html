@@ -1,0 +1,20 @@
+{{ $artigos := where site.RegularPages "Section" "artigos" }}
+{{ with $artigos.ByDate.Reverse }}
+<div class="secao-full tom-b">
+<section id="artigos" class="artigos-home">
+  <h2>Artigos</h2>
+  <p class="secao-intro">Textos sobre os temas que acompanho no consultório, escritos para quem está tentando entender o que está vivendo.</p>
+  <div class="grid-artigos">
+    {{ range first 3 . }}
+    <article class="card-artigo">
+      {{ with .Date }}{{ $m := index (slice "" "janeiro" "fevereiro" "março" "abril" "maio" "junho" "julho" "agosto" "setembro" "outubro" "novembro" "dezembro") (int (.Format "1")) }}<p class="card-artigo-data">{{ $m }} de {{ .Format "2006" }}</p>{{ end }}
+      <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+      <p>{{ .Params.descricao }}</p>
+      <a class="leia-mais" href="{{ .RelPermalink }}">LEIA MAIS</a>
+    </article>
+    {{ end }}
+  </div>
+  <p class="artigos-home-todos"><a class="leia-mais" href="/artigos/">VER TODOS OS ARTIGOS</a></p>
+</section>
+</div>
+{{ end }}

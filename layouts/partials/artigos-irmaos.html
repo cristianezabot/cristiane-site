@@ -1,0 +1,17 @@
+{{ with .Params.especialidade }}
+{{ $atual := $.RelPermalink }}
+{{ $irmaos := where (where (where site.RegularPages "Section" "artigos") ".Params.especialidade" .) "RelPermalink" "!=" $atual }}
+{{ with $irmaos.ByDate.Reverse }}
+<div class="artigos-relacionados">
+  <p class="relacionado-label">LEIA TAMBÉM</p>
+  <ul class="lista-relacionados">
+    {{ range first 3 . }}
+    <li>
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      <p>{{ .Params.descricao }}</p>
+    </li>
+    {{ end }}
+  </ul>
+</div>
+{{ end }}
+{{ end }}

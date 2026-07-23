@@ -697,3 +697,64 @@ section > h2::after {
   color: #7A8C6A;
   text-decoration: none;
 }
+
+/* ---------- Artigos relacionados (especialidade e artigo) ---------- */
+.artigos-relacionados {
+  margin-top: 3.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(122, 140, 106, 0.3);
+}
+
+.artigos-relacionados .relacionado-label {
+  font-family: "Jost", sans-serif;
+  font-weight: 400;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: #7A8C6A;
+  margin-bottom: 1.5rem;
+}
+
+.lista-relacionados {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.lista-relacionados li {
+  margin-bottom: 1.5rem;
+}
+
+.lista-relacionados li a {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 400;
+  font-size: 1.35rem;
+  color: #556052;
+  text-decoration: none;
+  line-height: 1.3;
+}
+
+.lista-relacionados li a:hover {
+  color: #7A8C6A;
+}
+
+.lista-relacionados li p {
+  font-family: "Jost", sans-serif;
+  font-weight: 300;
+  font-size: 0.95rem;
+  color: #556052;
+  margin-top: 0.4rem;
+  line-height: 1.5;
+}
+
+/* ---------- Seção de artigos na home ---------- */
+.artigos-home {
+  text-align: center;
+}
+
+.artigos-home .grid-artigos {
+  margin-top: 2.5rem;
+}
+
+.artigos-home-todos {
+  margin-top: 2.5rem;
+}

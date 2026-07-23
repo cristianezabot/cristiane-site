@@ -1,0 +1,16 @@
+{{ $esp := .File.BaseFileName }}
+{{ $relacionados := where (where site.RegularPages "Section" "artigos") ".Params.especialidade" $esp }}
+{{ with $relacionados.ByDate.Reverse }}
+<div class="artigos-relacionados">
+  <p class="relacionado-label">ARTIGOS SOBRE ESTE TEMA</p>
+  <ul class="lista-relacionados">
+    {{ range first 4 . }}
+    <li>
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      <p>{{ .Params.descricao }}</p>
+    </li>
+    {{ end }}
+  </ul>
+  <a class="leia-mais" href="/artigos/">TODOS OS ARTIGOS</a>
+</div>
+{{ end }}
