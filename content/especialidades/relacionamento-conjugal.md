@@ -3,7 +3,7 @@ title: "Relacionamento Conjugal"
 seotitle: "Terapia de Casal em Joinville e Online"
 descricao: "Distanciamento afetivo entre o casal que se instala aos poucos, mesmo sem conflitos abertos."
 modalidade: "ONLINE E PRESENCIAL"
-weight: 4
+weight: 5
 ---
 
 ## Relacionamento Conjugal: quando o casamento pede um novo olhar

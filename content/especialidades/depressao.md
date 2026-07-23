@@ -3,7 +3,7 @@ title: "Depressão"
 seotitle: "Terapia para Depressão em Mulheres — Online e Joinville"
 descricao: "Perda de energia, de interesse e de sentido que se instala aos poucos e não se resolve com descanso."
 modalidade: "ONLINE E PRESENCIAL"
-weight: 9
+weight: 2
 ---
 
 ## Depressão: quando o cansaço deixa de ser cansaço

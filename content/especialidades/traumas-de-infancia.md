@@ -3,7 +3,7 @@ title: "Traumas de Infância"
 seotitle: "Terapia para Traumas de Infância em Mulheres"
 descricao: "Vivências antigas não resolvidas que ainda influenciam padrões emocionais na vida adulta."
 modalidade: "ONLINE E PRESENCIAL"
-weight: 8
+weight: 9
 ---
 
 ## Traumas de Infância: quando o passado ainda influencia o presente

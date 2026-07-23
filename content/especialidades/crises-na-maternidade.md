@@ -3,7 +3,7 @@ title: "Crises na Maternidade"
 seotitle: "Terapia para Mães em Esgotamento — Online e Joinville"
 descricao: "Esgotamento emocional que surge quando a entrega materna não encontra espaço para o próprio cansaço."
 modalidade: "ONLINE E PRESENCIAL"
-weight: 2
+weight: 3
 ---
 
 ## Crises na Maternidade: quando o amor não elimina o cansaço
