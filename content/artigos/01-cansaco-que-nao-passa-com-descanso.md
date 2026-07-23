@@ -2,7 +2,7 @@
 title: "Cansaço que não passa com descanso: quando parar não resolve"
 seotitle: "Cansaço que não passa: por que dormir e descansar não resolve"
 descricao: "Você dorme oito horas e acorda cansada. Tira férias e volta igual. Quando o descanso não repõe, o cansaço raramente é físico."
-date: 2026-08-05
+date: 2026-07-23
 especialidade: "ansiedade"
 ---
 
