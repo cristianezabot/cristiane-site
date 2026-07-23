@@ -1,0 +1,36 @@
+{{ define "main" }}
+<div class="secao-full tom-a">
+<section class="pagina-especialidade">
+
+  <aside class="ficha-especialista">
+    <div class="ficha-foto">
+      <img src="/img/cristianezabot.jpg" alt="Cristiane Zabot">
+    </div>
+    <h2 class="ficha-nome">Cristiane Zabot</h2>
+    <p class="ficha-titulo">Psicoterapeuta de Mulheres</p>
+    <p class="ficha-modalidade">ONLINE E PRESENCIAL</p>
+    <a class="btn-cta" href="https://api.whatsapp.com/send?phone=5547996065858&text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener">AGENDAR CONSULTA</a>
+  </aside>
+
+  <article class="conteudo-especialidade">
+    <h1>{{ .Title }}</h1>
+    {{ with .Date }}{{ $m := index (slice "" "janeiro" "fevereiro" "março" "abril" "maio" "junho" "julho" "agosto" "setembro" "outubro" "novembro" "dezembro") (int (.Format "1")) }}<p class="artigo-data">{{ .Format "2" }} de {{ $m }} de {{ .Format "2006" }}</p>{{ end }}
+    {{ .Content }}
+
+    {{ with .Params.especialidade }}
+      {{ $esp := site.GetPage (printf "/especialidades/%s" .) }}
+      {{ with $esp }}
+      <div class="artigo-relacionado">
+        <p class="relacionado-label">SOBRE ESTE TEMA</p>
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <p>{{ .Params.descricao }}</p>
+      </div>
+      {{ end }}
+    {{ end }}
+
+    <p class="artigo-voltar"><a href="/artigos/">← Todos os artigos</a></p>
+  </article>
+
+</section>
+</div>
+{{ end }}

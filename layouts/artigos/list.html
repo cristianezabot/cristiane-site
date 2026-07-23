@@ -1,0 +1,19 @@
+{{ define "main" }}
+<div class="secao-full tom-a">
+<section class="lista-artigos">
+  <h1>Artigos</h1>
+  <p class="secao-intro">Textos sobre os temas que acompanho no consultório — escritos para quem está tentando entender o que está vivendo.</p>
+
+  <div class="grid-artigos">
+    {{ range .Pages.ByDate.Reverse }}
+    <article class="card-artigo">
+      {{ with .Date }}{{ $m := index (slice "" "janeiro" "fevereiro" "março" "abril" "maio" "junho" "julho" "agosto" "setembro" "outubro" "novembro" "dezembro") (int (.Format "1")) }}<p class="card-artigo-data">{{ $m }} de {{ .Format "2006" }}</p>{{ end }}
+      <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+      <p>{{ .Params.descricao }}</p>
+      <a class="leia-mais" href="{{ .RelPermalink }}">LEIA MAIS</a>
+    </article>
+    {{ end }}
+  </div>
+</section>
+</div>
+{{ end }}

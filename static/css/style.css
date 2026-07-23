@@ -594,3 +594,106 @@ section > h2::after {
   color: #556052;
   margin-bottom: 32px;
 }
+
+/* ---------- ARTIGOS ---------- */
+
+.lista-artigos {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+
+.lista-artigos h1 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 400;
+  font-size: 3rem;
+  color: #556052;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.grid-artigos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 48px;
+  margin-top: 56px;
+}
+
+.card-artigo h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 400;
+  font-size: 1.75rem;
+  line-height: 1.25;
+  margin: 8px 0 12px;
+}
+
+.card-artigo h2 a {
+  color: #556052;
+  text-decoration: none;
+}
+
+.card-artigo h2 a:hover {
+  color: #7A8C6A;
+}
+
+.card-artigo p {
+  color: #556052;
+  line-height: 1.6;
+}
+
+.card-artigo-data {
+  font-family: "Jost", sans-serif;
+  font-weight: 300;
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #7A8C6A;
+}
+
+.artigo-data {
+  font-family: "Jost", sans-serif;
+  font-weight: 300;
+  font-size: 0.85rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #7A8C6A;
+  margin-bottom: 40px;
+}
+
+.artigo-relacionado {
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid #7A8C6A;
+}
+
+.relacionado-label {
+  font-family: "Jost", sans-serif;
+  font-weight: 300;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  color: #7A8C6A;
+  margin-bottom: 12px;
+}
+
+.artigo-relacionado a {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.6rem;
+  color: #556052;
+  text-decoration: none;
+}
+
+.artigo-relacionado a:hover {
+  color: #7A8C6A;
+}
+
+.artigo-voltar {
+  margin-top: 48px;
+  font-family: "Jost", sans-serif;
+  font-weight: 300;
+  font-size: 0.9rem;
+}
+
+.artigo-voltar a {
+  color: #7A8C6A;
+  text-decoration: none;
+}
