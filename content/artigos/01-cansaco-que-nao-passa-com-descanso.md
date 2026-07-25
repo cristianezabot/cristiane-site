@@ -64,4 +64,4 @@ Se o que você lê aqui descreve algo do seu dia, vale conhecer melhor como func
 
 Muitas mulheres chegam ao consultório sem saber nomear exatamente o que sentem. Sabem apenas que estão cansadas de um jeito que o descanso não alcança. Nomear já é o começo do trabalho. Se algo aqui soou familiar, podemos conversar sobre isso.
 
-[Conversar comigo pelo WhatsApp](https://api.whatsapp.com/send?phone=5547996065858&text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20agendar%20uma%20consulta.)
+[Conversar comigo pelo WhatsApp](https://api.whatsapp.com/send?phone=5547996065858&text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20agendar%20uma%20sess%C3%A3o.)

@@ -3,7 +3,7 @@ INFORMAÇÕES DO SITE —
 ============================================================
 
 >>> SISTEMA
-Linux eddington 6.17.0-1028-oem #28-Ubuntu SMP PREEMPT_DYNAMIC Thu Jun 25 08:39:20 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+Linux eddington 6.17.0-1030-oem #30-Ubuntu SMP PREEMPT_DYNAMIC Thu Jul 16 15:01:53 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
 
 >>> VERSÕES
 Hugo: hugo v0.123.7+extended linux/amd64 BuildDate=2025-07-18T03:41:49Z VendorInfo=ubuntu:0.123.7-1ubuntu0.3
@@ -18,7 +18,7 @@ origin	git@github-cristiane:cristianezabot/cristiane-site.git (fetch)
 origin	git@github-cristiane:cristianezabot/cristiane-site.git (push)
 
 Último commit:
-9e46386 Artigo 1
+8d97659 tons alternados
 
 Branches:
 * main
@@ -50,6 +50,7 @@ title = 'Cristiane Zabot - Psicoterapeuta'
 ./content/especialidades/ansiedade.md
 ./content/especialidades/climaterio-e-menopausa.md
 ./content/especialidades/crises-na-maternidade.md
+./content/especialidades/depressao.md
 ./content/especialidades/luto.md
 ./content/especialidades/perda-gestacional.md
 ./content/especialidades/relacionamento-conjugal.md
@@ -74,6 +75,9 @@ title = 'Cristiane Zabot - Psicoterapeuta'
 ./layouts/especialidades/single.html
 ./layouts/index.html
 ./layouts/partials
+./layouts/partials/artigos-home.html
+./layouts/partials/artigos-irmaos.html
+./layouts/partials/artigos-relacionados.html
 ./layouts/partials/depoimentos.html
 ./layouts/partials/duvidas.html
 ./layouts/partials/especialidades.html
@@ -174,6 +178,8 @@ DUMP DOS ARQUIVOS
       {{ end }}
     {{ end }}
 
+    {{ partial "artigos-irmaos.html" . }}
+
     <p class="artigo-voltar"><a href="/artigos/">← Todos os artigos</a></p>
   </article>
 
@@ -235,6 +241,31 @@ DUMP DOS ARQUIVOS
   }
   </script>
   {{ end }}
+  {{ if eq .Section "artigos" }}{{ if not .IsSection }}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": {{ .Title }},
+    "description": {{ .Params.descricao }},
+    "datePublished": "{{ .Date.Format "2006-01-02" }}",
+    "dateModified": "{{ .Lastmod.Format "2006-01-02" }}",
+    "author": {
+      "@type": "Person",
+      "name": "Cristiane Zabot",
+      "jobTitle": "Psicoterapeuta de Mulheres",
+      "url": "https://cristianezabot.com.br/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Cristiane Zabot — Psicoterapeuta de Mulheres",
+      "url": "https://cristianezabot.com.br/"
+    },
+    "mainEntityOfPage": {{ .Permalink }},
+    "inLanguage": "pt-BR"
+  }
+  </script>
+  {{ end }}{{ end }}
 </head>
 <body>
   {{ partial "header.html" . }}
@@ -271,6 +302,8 @@ DUMP DOS ARQUIVOS
   <article class="conteudo-especialidade">
     <h1>{{ .Title }}</h1>
     {{ .Content }}
+      {{ partial "artigos-relacionados.html" . }}
+
   </article>
 
 </section>
@@ -282,12 +315,72 @@ DUMP DOS ARQUIVOS
   {{ partial "hero.html" . }}
   {{ partial "quem-sou.html" . }}
   {{ partial "especialidades.html" . }}
+  {{ partial "artigos-home.html" . }}
   {{ partial "depoimentos.html" . }}
   {{ partial "duvidas.html" . }}
 {{ end }}
 
---- layouts/partials/depoimentos.html ---
+--- layouts/partials/artigos-home.html ---
+{{ $artigos := where site.RegularPages "Section" "artigos" }}
+{{ with $artigos.ByDate.Reverse }}
 <div class="secao-full tom-b">
+<section id="artigos" class="artigos-home">
+  <h2>Artigos</h2>
+  <p class="secao-intro">Textos sobre os temas que acompanho no consultório, escritos para quem está tentando entender o que está vivendo.</p>
+  <div class="grid-artigos">
+    {{ range first 3 . }}
+    <article class="card-artigo">
+      {{ with .Date }}{{ $m := index (slice "" "janeiro" "fevereiro" "março" "abril" "maio" "junho" "julho" "agosto" "setembro" "outubro" "novembro" "dezembro") (int (.Format "1")) }}<p class="card-artigo-data">{{ $m }} de {{ .Format "2006" }}</p>{{ end }}
+      <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+      <p>{{ .Params.descricao }}</p>
+      <a class="leia-mais" href="{{ .RelPermalink }}">LEIA MAIS</a>
+    </article>
+    {{ end }}
+  </div>
+  <p class="artigos-home-todos"><a class="leia-mais" href="/artigos/">VER TODOS OS ARTIGOS</a></p>
+</section>
+</div>
+{{ end }}
+
+--- layouts/partials/artigos-irmaos.html ---
+{{ with .Params.especialidade }}
+{{ $atual := $.RelPermalink }}
+{{ $irmaos := where (where (where site.RegularPages "Section" "artigos") ".Params.especialidade" .) "RelPermalink" "!=" $atual }}
+{{ with $irmaos.ByDate.Reverse }}
+<div class="artigos-relacionados">
+  <p class="relacionado-label">LEIA TAMBÉM</p>
+  <ul class="lista-relacionados">
+    {{ range first 3 . }}
+    <li>
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      <p>{{ .Params.descricao }}</p>
+    </li>
+    {{ end }}
+  </ul>
+</div>
+{{ end }}
+{{ end }}
+
+--- layouts/partials/artigos-relacionados.html ---
+{{ $esp := .File.BaseFileName }}
+{{ $relacionados := where (where site.RegularPages "Section" "artigos") ".Params.especialidade" $esp }}
+{{ with $relacionados.ByDate.Reverse }}
+<div class="artigos-relacionados">
+  <p class="relacionado-label">ARTIGOS SOBRE ESTE TEMA</p>
+  <ul class="lista-relacionados">
+    {{ range first 4 . }}
+    <li>
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      <p>{{ .Params.descricao }}</p>
+    </li>
+    {{ end }}
+  </ul>
+  <a class="leia-mais" href="/artigos/">TODOS OS ARTIGOS</a>
+</div>
+{{ end }}
+
+--- layouts/partials/depoimentos.html ---
+<div class="secao-full tom-a">
 <section id="depoimentos" class="depoimentos">
   <h2>Depoimentos</h2>
   <div class="grid-depoimentos">
@@ -302,7 +395,7 @@ DUMP DOS ARQUIVOS
 </div>
 
 --- layouts/partials/duvidas.html ---
-<div class="secao-full tom-a">
+<div class="secao-full tom-b">
 <section id="duvidas" class="duvidas">
   <h2>Dúvidas</h2>
   <div class="lista-duvidas">
@@ -406,7 +499,7 @@ DUMP DOS ARQUIVOS
 title: "Cansaço que não passa com descanso: quando parar não resolve"
 seotitle: "Cansaço que não passa: por que dormir e descansar não resolve"
 descricao: "Você dorme oito horas e acorda cansada. Tira férias e volta igual. Quando o descanso não repõe, o cansaço raramente é físico."
-date: 2026-08-05
+date: 2026-07-23
 especialidade: "ansiedade"
 ---
 
@@ -520,7 +613,7 @@ title: "Climatério e Menopausa"
 seotitle: "Terapia para Climatério e Menopausa — Online"
 descricao: "Transição física e emocional que traz novas perguntas sobre identidade e feminilidade."
 modalidade: "ONLINE E PRESENCIAL"
-weight: 7
+weight: 8
 ---
 
 ## Climatério e Menopausa: uma nova fase que também é identidade
@@ -551,7 +644,7 @@ title: "Crises na Maternidade"
 seotitle: "Terapia para Mães em Esgotamento — Online e Joinville"
 descricao: "Esgotamento emocional que surge quando a entrega materna não encontra espaço para o próprio cansaço."
 modalidade: "ONLINE E PRESENCIAL"
-weight: 2
+weight: 3
 ---
 
 ## Crises na Maternidade: quando o amor não elimina o cansaço
@@ -580,13 +673,51 @@ Na escuta, buscamos compreender de onde vêm as expectativas que essa mulher car
 
 Se você sente que o cansaço da maternidade já ultrapassou o que é razoável, e que a culpa tem falado mais alto que o cuidado consigo, talvez seja hora de conversar sobre isso.
 
+--- content/especialidades/depressao.md ---
+---
+title: "Depressão"
+seotitle: "Terapia para Depressão em Mulheres — Online e Joinville"
+descricao: "Perda de energia, de interesse e de sentido que se instala aos poucos e não se resolve com descanso."
+modalidade: "ONLINE E PRESENCIAL"
+weight: 2
+---
+
+## Depressão: quando o cansaço deixa de ser cansaço
+
+Nem toda depressão se parece com tristeza. Muitas mulheres continuam trabalhando, cuidando da casa, respondendo a todos, e por fora nada indica que algo esteja errado. Por dentro, o que existe é uma espécie de apagamento: as coisas que antes davam vontade deixaram de dar, o dia se cumpre por obrigação, e a sensação é de estar assistindo à própria vida de uma certa distância.
+
+Como o funcionamento se mantém, a queixa costuma demorar a aparecer. Ela vem disfarçada de cansaço, de fase ruim, de excesso de trabalho. E, exatamente por isso, costuma ser suportada por muito mais tempo do que precisaria.
+
+### Sinais que merecem atenção
+
+- Cansaço que não melhora com descanso, sono ou férias
+- Perda de interesse por coisas que antes importavam
+- Dificuldade de sentir prazer, mesmo em situações boas
+- Irritabilidade constante ou sensação persistente de vazio
+- Alterações importantes de sono ou de apetite
+- Autocrítica intensa e sensação de estar sempre em falta
+
+Quando esses sinais se sustentam por semanas, e não por alguns dias, vale olhar para isso com cuidado.
+
+### O que costumo trabalhar em terapia
+
+O trabalho começa por distinguir o que está acontecendo. Tristeza, esgotamento e depressão se confundem com facilidade, e a diferença entre eles muda o tipo de ajuda que faz sentido.
+
+A partir daí, o acompanhamento se ocupa de duas frentes. Uma é reconhecer os pensamentos automáticos que sustentam o quadro e testá-los contra a realidade, que é o trabalho da terapia cognitivo-comportamental. A outra é olhar para o que dá sentido aos dias, mesmo quando a vontade não está presente, porque a recuperação raramente começa pela vontade.
+
+Depressão é um quadro que pede acompanhamento profissional, e em muitos casos também avaliação médica. Esse acompanhamento não substitui nem dispensa a avaliação de um médico, e nenhuma decisão sobre medicação se toma fora dessa consulta.
+
+### Se isso soa familiar
+
+Se você se reconhece nessa descrição, e sobretudo se isso já dura semanas, vale olhar para isso com mais cuidado, e não sozinha.
+
 --- content/especialidades/luto.md ---
 ---
 title: "Luto"
 seotitle: "Terapia para Luto em Joinville e Online"
 descricao: "Processo emocional diante da perda de alguém importante, que exige tempo e não segue uma ordem previsível."
 modalidade: "ONLINE E PRESENCIAL"
-weight: 6
+weight: 7
 ---
 
 ## Luto: quando a dor da perda pede um espaço para ser vivida
@@ -617,7 +748,7 @@ title: "Perda Gestacional"
 seotitle: "Terapia para Perda Gestacional — Acompanhamento no Luto"
 descricao: "Luto silenciado pela perda de uma gestação, muitas vezes vivido sem espaço para ser nomeado."
 modalidade: "ONLINE E PRESENCIAL"
-weight: 5
+weight: 6
 ---
 
 ## Perda Gestacional: um luto que muitas vezes é vivido em silêncio
@@ -648,7 +779,7 @@ title: "Relacionamento Conjugal"
 seotitle: "Terapia de Casal em Joinville e Online"
 descricao: "Distanciamento afetivo entre o casal que se instala aos poucos, mesmo sem conflitos abertos."
 modalidade: "ONLINE E PRESENCIAL"
-weight: 4
+weight: 5
 ---
 
 ## Relacionamento Conjugal: quando o casamento pede um novo olhar
@@ -681,7 +812,7 @@ title: "Transições de Carreira"
 seotitle: "Terapia para Transição de Carreira Feminina — Online"
 descricao: "Momento de inquietação profissional em que o caminho atual já não faz mais sentido."
 modalidade: "ONLINE E PRESENCIAL"
-weight: 3
+weight: 4
 ---
 
 ## Transições de Carreira: quando o caminho profissional pede uma pausa para pensar
@@ -714,7 +845,7 @@ title: "Traumas de Infância"
 seotitle: "Terapia para Traumas de Infância em Mulheres"
 descricao: "Vivências antigas não resolvidas que ainda influenciam padrões emocionais na vida adulta."
 modalidade: "ONLINE E PRESENCIAL"
-weight: 8
+weight: 9
 ---
 
 ## Traumas de Infância: quando o passado ainda influencia o presente
@@ -755,7 +886,7 @@ git push
 
 >>> TESTE DE BUILD
 -------------------+-----
-  Pages            | 16  
+  Pages            | 18  
   Paginator pages  |  0  
   Non-page files   |  0  
   Static files     |  9  
@@ -763,7 +894,7 @@ git push
   Aliases          |  0  
   Cleaned          |  0  
 
-Total in 65 ms
+Total in 49 ms
 
 ============================================================
 Arquivo gerado em: /home/zabot/cristiane/site/site_info.txt
