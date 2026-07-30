@@ -18,7 +18,7 @@ origin	git@github-cristiane:cristianezabot/cristiane-site.git (fetch)
 origin	git@github-cristiane:cristianezabot/cristiane-site.git (push)
 
 Último commit:
-8d97659 tons alternados
+cc3b5db título profissional para Psicoterapeuta; CTA e mensagens para Agendar Sessão
 
 Branches:
 * main
@@ -157,9 +157,9 @@ DUMP DOS ARQUIVOS
       <img src="/img/cristianezabot.jpg" alt="Cristiane Zabot">
     </div>
     <h2 class="ficha-nome">Cristiane Zabot</h2>
-    <p class="ficha-titulo">Psicoterapeuta de Mulheres</p>
+    <p class="ficha-titulo">Psicoterapeuta</p>
     <p class="ficha-modalidade">ONLINE E PRESENCIAL</p>
-    <a class="btn-cta" href="https://api.whatsapp.com/send?phone=5547996065858&text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener">AGENDAR CONSULTA</a>
+    <a class="btn-cta" href="https://api.whatsapp.com/send?phone=5547996065858&text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20agendar%20uma%20sess%C3%A3o." target="_blank" rel="noopener">AGENDAR SESSÃO</a>
   </aside>
 
   <article class="conteudo-especialidade">
@@ -225,7 +225,7 @@ DUMP DOS ARQUIVOS
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "name": "Cristiane Zabot — Psicoterapeuta de Mulheres",
+    "name": "Cristiane Zabot — Psicoterapeuta",
     "description": "Psicoterapia para mulheres, online e presencial em Joinville.",
     "url": "https://cristianezabot.com.br/",
     "image": "https://cristianezabot.com.br/img/cristianezabot.jpg",
@@ -253,12 +253,12 @@ DUMP DOS ARQUIVOS
     "author": {
       "@type": "Person",
       "name": "Cristiane Zabot",
-      "jobTitle": "Psicoterapeuta de Mulheres",
+      "jobTitle": "Psicoterapeuta",
       "url": "https://cristianezabot.com.br/"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "Cristiane Zabot — Psicoterapeuta de Mulheres",
+      "name": "Cristiane Zabot — Psicoterapeuta",
       "url": "https://cristianezabot.com.br/"
     },
     "mainEntityOfPage": {{ .Permalink }},
@@ -294,9 +294,9 @@ DUMP DOS ARQUIVOS
       <img src="/img/cristianezabot.jpg" alt="Cristiane Zabot">
     </div>
     <h2 class="ficha-nome">Cristiane Zabot</h2>
-    <p class="ficha-titulo">Psicoterapeuta de Mulheres</p>
+    <p class="ficha-titulo">Psicoterapeuta</p>
     <p class="ficha-modalidade">{{ .Params.modalidade | default "ONLINE E PRESENCIAL" }}</p>
-    <a class="btn-cta" href="https://api.whatsapp.com/send?phone=5547996065858&text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener">AGENDAR CONSULTA</a>
+    <a class="btn-cta" href="https://api.whatsapp.com/send?phone=5547996065858&text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20agendar%20uma%20sess%C3%A3o." target="_blank" rel="noopener">AGENDAR SESSÃO</a>
   </aside>
 
   <article class="conteudo-especialidade">
@@ -433,7 +433,7 @@ DUMP DOS ARQUIVOS
   <div class="footer-hairline"></div>
   <div class="footer-assinatura">
     <div class="nome">Cristiane Zabot</div>
-    <div class="titulo">Psicoterapeuta de Mulheres</div>
+    <div class="titulo">Psicoterapeuta</div>
   </div>
   <div class="footer-contato">
     <a href="https://api.whatsapp.com/send?phone=5547996065858" target="_blank" rel="noopener">(47) 99606-5858</a>
@@ -461,7 +461,7 @@ DUMP DOS ARQUIVOS
     <a href="/artigos/">ARTIGOS</a>
     <a href="https://www.instagram.com/cristiane_zabot" target="_blank" rel="noopener" class="nav-instagram" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
   </nav>
-  <a class="btn-cta" href="https://api.whatsapp.com/send?phone=5547996065858&text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener">AGENDAR CONSULTA</a>
+  <a class="btn-cta" href="https://api.whatsapp.com/send?phone=5547996065858&text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20agendar%20uma%20sess%C3%A3o." target="_blank" rel="noopener">AGENDAR SESSÃO</a>
 </header>
 
 --- layouts/partials/hero.html ---
@@ -472,7 +472,7 @@ DUMP DOS ARQUIVOS
     <p class="kicker">PSICOTERAPIA DE MULHERES</p>
     <h1>Unidade interior para viver com paz e harmonia</h1>
     <p class="hero-sub">Presença, escuta e cuidado para cada etapa da sua história</p>
-    <a class="btn-cta" href="https://api.whatsapp.com/send?phone=5547996065858&text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener">AGENDAR CONSULTA</a>
+    <a class="btn-cta" href="https://api.whatsapp.com/send?phone=5547996065858&text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20agendar%20uma%20sess%C3%A3o." target="_blank" rel="noopener">AGENDAR SESSÃO</a>
   </div>
   <div class="hero-foto">
     <img src="/img/cristianezabot.jpg" alt="Cristiane Zabot">
@@ -485,9 +485,9 @@ DUMP DOS ARQUIVOS
 <section id="quem-sou" class="quem-sou">
   <h2>Quem Sou</h2>
   <div class="quem-sou-conteudo">
-    <p>Psicoterapeuta de Mulheres, com formação em Psicologia Familiar. Combino Terapia Cognitivo-Comportamental e Logoterapia num processo de escuta para compreender e ajudar mulheres em sua totalidade.</p>
+    <p>Psicoterapeuta, com formação em Psicologia Familiar. Combino Terapia Cognitivo-Comportamental e Logoterapia num processo de escuta para compreender e ajudar mulheres em sua totalidade.</p>
     <p>Sou casada há 20 anos e mãe de 8 filhos. Antes de chegar à terapia, minha trajetória profissional começou pelo jornalismo. O que me trouxe até aqui foi sempre o mesmo interesse: entender profundamente a história de cada pessoa.</p>
-    <p class="assinatura-secao">Cristiane Zabot — Psicoterapeuta de Mulheres</p>
+    <p class="assinatura-secao">Cristiane Zabot — Psicoterapeuta</p>
   </div>
 </section>
 </div>
@@ -561,13 +561,13 @@ Se o que você lê aqui descreve algo do seu dia, vale conhecer melhor como func
 
 Muitas mulheres chegam ao consultório sem saber nomear exatamente o que sentem. Sabem apenas que estão cansadas de um jeito que o descanso não alcança. Nomear já é o começo do trabalho. Se algo aqui soou familiar, podemos conversar sobre isso.
 
-[Conversar comigo pelo WhatsApp](https://api.whatsapp.com/send?phone=5547996065858&text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20agendar%20uma%20consulta.)
+[Conversar comigo pelo WhatsApp](https://api.whatsapp.com/send?phone=5547996065858&text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20agendar%20uma%20sess%C3%A3o.)
 
 --- content/artigos/_index.md ---
 ---
 title: "Artigos"
 seotitle: "Artigos sobre Psicoterapia para Mulheres — Cristiane Zabot"
-descricao: "Textos sobre ansiedade, maternidade, luto, relacionamento e transições de vida, escritos por Cristiane Zabot, Psicoterapeuta de Mulheres."
+descricao: "Textos sobre ansiedade, maternidade, luto, relacionamento e transições de vida, escritos por Cristiane Zabot, Psicoterapeuta."
 ---
 
 --- content/especialidades/ansiedade.md ---
@@ -894,7 +894,7 @@ git push
   Aliases          |  0  
   Cleaned          |  0  
 
-Total in 49 ms
+Total in 34 ms
 
 ============================================================
 Arquivo gerado em: /home/zabot/cristiane/site/site_info.txt
