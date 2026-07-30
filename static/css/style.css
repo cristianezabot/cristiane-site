@@ -758,3 +758,208 @@ section > h2::after {
 .artigos-home-todos {
   margin-top: 2.5rem;
 }
+
+/* ==========================================================================
+   PALESTRAS — lista e página individual
+   ========================================================================== */
+
+/* --- Listagem (/palestras/) --- */
+
+.lista-palestras {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+
+.lista-palestras h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 3rem;
+  color: var(--sage-dark);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.grid-palestras {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 48px;
+  margin-top: 56px;
+}
+
+.card-palestra {
+  border-top: 1px solid var(--sage-line);
+  padding-top: 0;
+}
+
+.card-palestra-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Thumbnail do YouTube — proporção 16:9 */
+.card-palestra-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--creme-b);
+  margin-bottom: 20px;
+  transition: opacity 0.25s ease;
+}
+
+.card-palestra-link:hover .card-palestra-thumb {
+  opacity: 0.85;
+}
+
+.card-palestra-data {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 0.8rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 6px;
+}
+
+.card-palestra h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1.75rem;
+  line-height: 1.25;
+  margin: 0 0 10px;
+  color: var(--sage-dark);
+}
+
+.card-palestra-link:hover h2 {
+  color: var(--sage);
+}
+
+.card-palestra-local {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: var(--sage);
+  margin-bottom: 10px;
+}
+
+.card-palestra p {
+  color: var(--sage-dark);
+  font-size: 0.98rem;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+/* --- Página individual (/palestras/nome/) --- */
+
+.pagina-palestra {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 72px 24px 96px;
+}
+
+.pagina-palestra h1 {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(2rem, 4.5vw, 2.8rem);
+  line-height: 1.2;
+  color: var(--sage-dark);
+  margin-bottom: 1rem;
+}
+
+.palestra-data-local {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 0.82rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 1.6rem;
+}
+
+.palestra-descricao {
+  font-size: 1.08rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--sage-dark);
+  max-width: 66ch;
+  margin-bottom: 2.5rem;
+  border-left: 2px solid var(--sage-line);
+  padding-left: 1.4rem;
+}
+
+/* Vídeo responsivo 16:9 */
+.video-responsivo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 2.5rem;
+  background: var(--creme-b);
+}
+
+.video-responsivo iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Lista de materiais de apoio */
+.lista-materiais {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--sage-line);
+}
+
+.lista-materiais .relacionado-label {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 1.25rem;
+}
+
+.lista-materiais ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.lista-materiais ul li a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--creme);
+  background: var(--sage);
+  padding: 0.7rem 1.4rem;
+  border-radius: 2px;
+  transition: background 0.25s ease;
+}
+
+.lista-materiais ul li a::before {
+  content: "↓";
+  font-size: 0.9em;
+}
+
+.lista-materiais ul li a:hover {
+  background: var(--sage-dark);
+}
+
+@media (max-width: 600px) {
+  .lista-palestras { padding: 48px 20px; }
+  .pagina-palestra { padding: 48px 20px 72px; }
+  .grid-palestras { grid-template-columns: 1fr; gap: 36px; }
+}

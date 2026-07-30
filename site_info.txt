@@ -18,7 +18,7 @@ origin	git@github-cristiane:cristianezabot/cristiane-site.git (fetch)
 origin	git@github-cristiane:cristianezabot/cristiane-site.git (push)
 
 Último commit:
-cc3b5db título profissional para Psicoterapeuta; CTA e mensagens para Agendar Sessão
+c12d7b3 Inclui palestras
 
 Branches:
 * main
@@ -37,6 +37,7 @@ title = 'Cristiane Zabot - Psicoterapeuta'
 
 >>> ESTRUTURA DO SITE
 .
+./adicionar-palestras.sh
 ./archetypes
 ./archetypes/default.md
 ./assets
@@ -57,6 +58,9 @@ title = 'Cristiane Zabot - Psicoterapeuta'
 ./content/especialidades/transicoes-de-carreira.md
 ./content/especialidades/traumas-de-infancia.md
 ./content/_index.md
+./content/palestras
+./content/palestras/exemplo-palestra.md
+./content/palestras/_index.md
 ./data
 ./data/depoimentos.yaml
 ./data/duvidas.yaml
@@ -74,6 +78,9 @@ title = 'Cristiane Zabot - Psicoterapeuta'
 ./layouts/especialidades
 ./layouts/especialidades/single.html
 ./layouts/index.html
+./layouts/palestras
+./layouts/palestras/list.html
+./layouts/palestras/single.html
 ./layouts/partials
 ./layouts/partials/artigos-home.html
 ./layouts/partials/artigos-irmaos.html
@@ -81,6 +88,7 @@ title = 'Cristiane Zabot - Psicoterapeuta'
 ./layouts/partials/depoimentos.html
 ./layouts/partials/duvidas.html
 ./layouts/partials/especialidades.html
+./layouts/partials/extrai-youtube-id.html
 ./layouts/partials/footer.html
 ./layouts/partials/header.html
 ./layouts/partials/hero.html
@@ -320,6 +328,68 @@ DUMP DOS ARQUIVOS
   {{ partial "duvidas.html" . }}
 {{ end }}
 
+--- layouts/palestras/list.html ---
+{{ define "main" }}
+<div class="secao-full tom-a">
+<section class="lista-palestras">
+  <h1>Palestras</h1>
+  <p class="secao-intro">Vídeos e materiais de apoio das palestras que já apresentei.</p>
+
+  <div class="grid-palestras">
+    {{ range .Pages.ByDate.Reverse }}
+    <article class="card-palestra">
+      <a href="{{ .RelPermalink }}" class="card-palestra-link">
+        {{ with .Params.video }}
+        {{ $id := partial "extrai-youtube-id.html" . }}
+        <div class="card-palestra-thumb" style="background-image:url('https://img.youtube.com/vi/{{ $id }}/hqdefault.jpg')"></div>
+        {{ end }}
+        {{ with .Date }}{{ $m := index (slice "" "janeiro" "fevereiro" "março" "abril" "maio" "junho" "julho" "agosto" "setembro" "outubro" "novembro" "dezembro") (int (.Format "1")) }}<p class="card-palestra-data">{{ .Format "2" }} de {{ $m }} de {{ .Format "2006" }}</p>{{ end }}
+        <h2>{{ .Title }}</h2>
+        {{ with .Params.local }}<p class="card-palestra-local">{{ . }}</p>{{ end }}
+        <p>{{ .Params.descricao }}</p>
+        <span class="leia-mais">VER PALESTRA</span>
+      </a>
+    </article>
+    {{ end }}
+  </div>
+</section>
+</div>
+{{ end }}
+
+--- layouts/palestras/single.html ---
+{{ define "main" }}
+<div class="secao-full tom-a">
+<section class="pagina-palestra">
+  <h1>{{ .Title }}</h1>
+  {{ with .Date }}{{ $m := index (slice "" "janeiro" "fevereiro" "março" "abril" "maio" "junho" "julho" "agosto" "setembro" "outubro" "novembro" "dezembro") (int (.Format "1")) }}<p class="palestra-data-local">{{ .Format "2" }} de {{ $m }} de {{ .Format "2006" }}{{ with $.Params.local }} — {{ . }}{{ end }}</p>{{ end }}
+
+  {{ with .Params.descricao }}<p class="palestra-descricao">{{ . }}</p>{{ end }}
+
+  {{ with .Params.video }}
+  {{ $id := partial "extrai-youtube-id.html" . }}
+  <div class="video-responsivo">
+    <iframe src="https://www.youtube.com/embed/{{ $id }}" title="{{ $.Title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  </div>
+  {{ end }}
+
+  {{ .Content }}
+
+  {{ with .Params.materiais }}
+  <div class="lista-materiais">
+    <p class="relacionado-label">MATERIAIS DE APOIO</p>
+    <ul>
+      {{ range . }}
+      <li><a href="{{ .url }}" target="_blank" rel="noopener">{{ .nome }}</a></li>
+      {{ end }}
+    </ul>
+  </div>
+  {{ end }}
+
+  <p class="artigo-voltar"><a href="/palestras/">← Todas as palestras</a></p>
+</section>
+</div>
+{{ end }}
+
 --- layouts/partials/artigos-home.html ---
 {{ $artigos := where site.RegularPages "Section" "artigos" }}
 {{ with $artigos.ByDate.Reverse }}
@@ -427,6 +497,18 @@ DUMP DOS ARQUIVOS
 </section>
 </div>
 
+--- layouts/partials/extrai-youtube-id.html ---
+{{ $url := . }}
+{{ $id := $url }}
+{{ if in $url "youtu.be/" }}
+  {{ $id = index (split $url "youtu.be/") 1 }}
+{{ else if in $url "v=" }}
+  {{ $id = index (split (index (split $url "v=") 1) "&") 0 }}
+{{ else if in $url "embed/" }}
+  {{ $id = index (split $url "embed/") 1 }}
+{{ end }}
+{{ return $id }}
+
 --- layouts/partials/footer.html ---
 <div class="secao-full tom-b footer-wrapper">
 <footer class="site-footer">
@@ -446,6 +528,7 @@ DUMP DOS ARQUIVOS
     <a href="/#depoimentos">Depoimentos</a>
     <a href="/#duvidas">Dúvidas</a>
     <a href="/artigos/">Artigos</a>
+    <a href="/palestras/">Palestras</a>
   </nav>
 </footer>
 </div>
@@ -459,6 +542,7 @@ DUMP DOS ARQUIVOS
     <a href="/#depoimentos">DEPOIMENTOS</a>
     <a href="/#duvidas">DÚVIDAS</a>
     <a href="/artigos/">ARTIGOS</a>
+    <a href="/palestras/">PALESTRAS</a>
     <a href="https://www.instagram.com/cristiane_zabot" target="_blank" rel="noopener" class="nav-instagram" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
   </nav>
   <a class="btn-cta" href="https://api.whatsapp.com/send?phone=5547996065858&text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20agendar%20uma%20sess%C3%A3o." target="_blank" rel="noopener">AGENDAR SESSÃO</a>
@@ -469,7 +553,7 @@ DUMP DOS ARQUIVOS
 <section class="hero">
   <img class="galho-decorativo" src="/img/galho.png" alt="" aria-hidden="true">
   <div class="hero-texto">
-    <p class="kicker">PSICOTERAPIA DE MULHERES</p>
+    <p class="kicker">PSICOTERAPEUTA</p>
     <h1>Unidade interior para viver com paz e harmonia</h1>
     <p class="hero-sub">Presença, escuta e cuidado para cada etapa da sua história</p>
     <a class="btn-cta" href="https://api.whatsapp.com/send?phone=5547996065858&text=Ol%C3%A1%2C%20vim%20atrav%C3%A9s%20do%20site%20e%20gostaria%20de%20agendar%20uma%20sess%C3%A3o." target="_blank" rel="noopener">AGENDAR SESSÃO</a>
@@ -877,6 +961,29 @@ title: "Cristiane Zabot"
 
 Ajudo mulheres a construir unidade interior e transformar a própria vida.
 
+--- content/palestras/exemplo-palestra.md ---
+---
+title: "Tema da palestra (exemplo)"
+descricao: "Frase curta que aparece no card da listagem."
+date: 2026-05-10
+local: "Nome do evento, Joinville/SC"
+video: "https://youtu.be/XXXXXXXXXXX"
+materiais:
+  - nome: "Slides da apresentação"
+    url: "https://drive.google.com/SEU-LINK-AQUI"
+  - nome: "Material de apoio"
+    url: "https://drive.google.com/OUTRO-LINK-AQUI"
+weight: 1
+draft: true
+---
+
+Texto opcional com mais detalhes sobre a palestra, se quiser complementar a descrição curta.
+
+--- content/palestras/_index.md ---
+---
+title: "Palestras"
+---
+
 ### SCRIPT DE DEPLOY ###
 
 --- atualiza ---
@@ -886,7 +993,7 @@ git push
 
 >>> TESTE DE BUILD
 -------------------+-----
-  Pages            | 18  
+  Pages            | 20  
   Paginator pages  |  0  
   Non-page files   |  0  
   Static files     |  9  
@@ -894,7 +1001,7 @@ git push
   Aliases          |  0  
   Cleaned          |  0  
 
-Total in 34 ms
+Total in 57 ms
 
 ============================================================
 Arquivo gerado em: /home/zabot/cristiane/site/site_info.txt
