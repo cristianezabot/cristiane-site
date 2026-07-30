@@ -8,10 +8,6 @@
     {{ range .Pages.ByDate.Reverse }}
     <article class="card-palestra">
       <a href="{{ .RelPermalink }}" class="card-palestra-link">
-        {{ with .Params.video }}
-        {{ $id := partial "extrai-youtube-id.html" . }}
-        <div class="card-palestra-thumb" style="background-image:url('https://img.youtube.com/vi/{{ $id }}/hqdefault.jpg')"></div>
-        {{ end }}
         {{ with .Date }}{{ $m := index (slice "" "janeiro" "fevereiro" "março" "abril" "maio" "junho" "julho" "agosto" "setembro" "outubro" "novembro" "dezembro") (int (.Format "1")) }}<p class="card-palestra-data">{{ .Format "2" }} de {{ $m }} de {{ .Format "2006" }}</p>{{ end }}
         <h2>{{ .Title }}</h2>
         {{ with .Params.local }}<p class="card-palestra-local">{{ . }}</p>{{ end }}
