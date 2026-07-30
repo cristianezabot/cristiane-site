@@ -1,0 +1,32 @@
+{{ define "main" }}
+<div class="secao-full tom-a">
+<section class="pagina-palestra">
+  <h1>{{ .Title }}</h1>
+  {{ with .Date }}{{ $m := index (slice "" "janeiro" "fevereiro" "março" "abril" "maio" "junho" "julho" "agosto" "setembro" "outubro" "novembro" "dezembro") (int (.Format "1")) }}<p class="palestra-data-local">{{ .Format "2" }} de {{ $m }} de {{ .Format "2006" }}{{ with $.Params.local }} — {{ . }}{{ end }}</p>{{ end }}
+
+  {{ with .Params.descricao }}<p class="palestra-descricao">{{ . }}</p>{{ end }}
+
+  {{ with .Params.video }}
+  {{ $id := partial "extrai-youtube-id.html" . }}
+  <div class="video-responsivo">
+    <iframe src="https://www.youtube.com/embed/{{ $id }}" title="{{ $.Title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+  </div>
+  {{ end }}
+
+  {{ .Content }}
+
+  {{ with .Params.materiais }}
+  <div class="lista-materiais">
+    <p class="relacionado-label">MATERIAIS DE APOIO</p>
+    <ul>
+      {{ range . }}
+      <li><a href="{{ .url }}" target="_blank" rel="noopener">{{ .nome }}</a></li>
+      {{ end }}
+    </ul>
+  </div>
+  {{ end }}
+
+  <p class="artigo-voltar"><a href="/palestras/">← Todas as palestras</a></p>
+</section>
+</div>
+{{ end }}
