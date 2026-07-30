@@ -18,7 +18,7 @@ origin	git@github-cristiane:cristianezabot/cristiane-site.git (fetch)
 origin	git@github-cristiane:cristianezabot/cristiane-site.git (push)
 
 Último commit:
-c12d7b3 Inclui palestras
+3d62c0f remove thumbnail da listagem de palestras
 
 Branches:
 * main
@@ -59,7 +59,7 @@ title = 'Cristiane Zabot - Psicoterapeuta'
 ./content/especialidades/traumas-de-infancia.md
 ./content/_index.md
 ./content/palestras
-./content/palestras/exemplo-palestra.md
+./content/palestras/cnv-comunicacao-nao-violenta.md
 ./content/palestras/_index.md
 ./data
 ./data/depoimentos.yaml
@@ -339,10 +339,6 @@ DUMP DOS ARQUIVOS
     {{ range .Pages.ByDate.Reverse }}
     <article class="card-palestra">
       <a href="{{ .RelPermalink }}" class="card-palestra-link">
-        {{ with .Params.video }}
-        {{ $id := partial "extrai-youtube-id.html" . }}
-        <div class="card-palestra-thumb" style="background-image:url('https://img.youtube.com/vi/{{ $id }}/hqdefault.jpg')"></div>
-        {{ end }}
         {{ with .Date }}{{ $m := index (slice "" "janeiro" "fevereiro" "março" "abril" "maio" "junho" "julho" "agosto" "setembro" "outubro" "novembro" "dezembro") (int (.Format "1")) }}<p class="card-palestra-data">{{ .Format "2" }} de {{ $m }} de {{ .Format "2006" }}</p>{{ end }}
         <h2>{{ .Title }}</h2>
         {{ with .Params.local }}<p class="card-palestra-local">{{ . }}</p>{{ end }}
@@ -961,23 +957,17 @@ title: "Cristiane Zabot"
 
 Ajudo mulheres a construir unidade interior e transformar a própria vida.
 
---- content/palestras/exemplo-palestra.md ---
+--- content/palestras/cnv-comunicacao-nao-violenta.md ---
 ---
-title: "Tema da palestra (exemplo)"
-descricao: "Frase curta que aparece no card da listagem."
-date: 2026-05-10
-local: "Nome do evento, Joinville/SC"
-video: "https://youtu.be/XXXXXXXXXXX"
-materiais:
-  - nome: "Slides da apresentação"
-    url: "https://drive.google.com/SEU-LINK-AQUI"
-  - nome: "Material de apoio"
-    url: "https://drive.google.com/OUTRO-LINK-AQUI"
-weight: 1
-draft: true
+title: "Comunicação Não-Violenta"
+seotitle: "Comunicação Não-Violenta — Palestra de Cristiane Zabot"
+descricao: "Como a CNV pode transformar conflitos em conexão, especialmente no âmbito familiar."
+date: 2025-09-12
+local: "Online"
+video: "https://youtu.be/_Az03NwhLwY"
 ---
 
-Texto opcional com mais detalhes sobre a palestra, se quiser complementar a descrição curta.
+Nesta palestra apresento a Comunicação Não-Violenta (CNV), criada por Marshall Rosenberg, como uma ferramenta essencial para resolver conflitos e melhorar relacionamentos, especialmente no âmbito familiar. Detalho os quatro pilares da técnica: observar sem julgar, nomear sentimentos, identificar necessidades e fazer pedidos claros. O objetivo é substituir ataques por uma comunicação empática, promovendo harmonia e conexão no lar e na vida cotidiana.
 
 --- content/palestras/_index.md ---
 ---
@@ -987,13 +977,15 @@ title: "Palestras"
 ### SCRIPT DE DEPLOY ###
 
 --- atualiza ---
-git add -A
-git commit -m "${1:-atualiza site}"
-git push
+rm -rf public \
+  && hugo --gc --minify \
+  && git add -A \
+  && git commit -m "${1:-atualiza site}" \
+  && git push
 
 >>> TESTE DE BUILD
 -------------------+-----
-  Pages            | 20  
+  Pages            | 21  
   Paginator pages  |  0  
   Non-page files   |  0  
   Static files     |  9  
@@ -1001,7 +993,7 @@ git push
   Aliases          |  0  
   Cleaned          |  0  
 
-Total in 57 ms
+Total in 56 ms
 
 ============================================================
 Arquivo gerado em: /home/zabot/cristiane/site/site_info.txt
