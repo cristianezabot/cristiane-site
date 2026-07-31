@@ -2,7 +2,7 @@
 title: "Por que a mente acelera quando o corpo finalmente para"
 seotitle: "Mente acelerada à noite: por que não consegue desligar"
 descricao: "Você deita exausta e a mente escolhe justo esse momento para trabalhar. A ansiedade que só aparece à noite tem uma lógica que dá para entender."
-date: 2026-08-12
+date: 2026-07-30
 especialidade: "ansiedade"
 ---
 
