@@ -2,7 +2,7 @@
 title: "A solidão de estar sempre acompanhada no puerpério"
 seotitle: "Solidão no puerpério: por que ela aparece mesmo acompanhada"
 descricao: "Casa cheia, telefone tocando, alguém sempre por perto. E ainda assim uma solidão que não tem explicação fácil. Entenda por que isso acontece no puerpério."
-date: 2026-09-14
+date: 2026-09-10
 especialidade: "crises-na-maternidade"
 ---
 
